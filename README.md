@@ -1,8 +1,12 @@
 
 This repository provides a local setup of Kafka for producing messages and a Flink instance. It includes a Flink job that consumes messages from Kafka, performs a max operation every 10 seconds, and sinks the results either to a file or another Kafka topic, depending on the sink class used (`org.example.fileSinker` or `org.example.kafkaSinker`).
 
-#### **Read This First** 
-##### All these are examples for references used in the initial setup in my macbook. Adjust them based on your local environment.
+---
+
+#### Read This First
+All these are examples for references used in the initial setup in my macbook. Adjust them based on your local environment.
+
+---
 
 ## Docker Compose Commands
 
@@ -18,7 +22,7 @@ docker rm <old_img_id>
 
 Make the `localData` directory if it does not already exist:
 ```bash
-mkdir Users/teaugene/localData
+mkdir /Users/teaugene/localData
 ```
 
 ### To Bring Up the Setup / Change Only the Volume at Runtime:
@@ -28,7 +32,7 @@ docker-compose -f localdatasetup.yml up -d --no-deps --build jobmanager taskmana
 
 ### Stopping the Containers:
 ```bash
-docker stop <containerID1> <ContainerId2>
+docker stop <containerID1> <ContainerId2> ..
 ```
 
 ### Docker Logs:
@@ -41,6 +45,14 @@ docker logs taskmanager1 -f
 ```bash
 docker-compose -f localdatasetup.yml stop
 ```
+
+#### Check the [docker compose file](https://github.com/eaugene/localFlink/blob/main/localdatasetup.yml) for the ports info 
+| System              | From another Docker Container | From LocalHost     |
+|---------------------|-------------------------------|--------------------|
+| Zookeeper           | 2181                          | 2181               |
+| Kafka Broker        | host.docker.internal:29092    | 9092               |
+| Flink Job Manager   | 8081                          | 8081               |
+| Flink Task Managers | Not Needed to know            | Not Needed to know |
 
 ---
 
@@ -88,3 +100,4 @@ Wait for a while to ensure the job is running.
 
 ---
 
+**Queries:** [Eaugene Thomas](https://linkedin.com/in/eaugenethomas) ( eaugene9207@gmail.com )
