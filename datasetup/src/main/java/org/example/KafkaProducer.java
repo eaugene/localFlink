@@ -3,7 +3,6 @@ package org.example;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +12,7 @@ import java.util.Map;
 import static java.lang.Math.abs;
 
 
-public class Main {
+public class KafkaProducer {
   public static void main(String[] args) {
     // Kafka broker address
     String bootstrapServers = "127.0.0.1:9092";
@@ -27,7 +26,7 @@ public class Main {
     properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
     // Create a Kafka producer
-    Producer<String, String> producer = new KafkaProducer<>(properties);
+    Producer<String, String> producer = new org.apache.kafka.clients.producer.KafkaProducer<>(properties);
 
     // ObjectMapper for JSON serialization
     ObjectMapper objectMapper = new ObjectMapper();

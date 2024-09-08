@@ -45,7 +45,6 @@ services:
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
     volumes:
-      - flink-config:/opt/flink/conf
       - local-data:/opt/flink/data  # New volume added
 
   taskmanager1:
@@ -56,7 +55,6 @@ services:
     depends_on:
       - jobmanager
     volumes:
-      - flink-config:/opt/flink/conf
       - local-data:/opt/flink/data  # New volume added
 
   taskmanager2:
@@ -67,7 +65,6 @@ services:
     depends_on:
       - jobmanager
     volumes:
-      - flink-config:/opt/flink/conf
       - local-data:/opt/flink/data  # New volume added
 
   taskmanager3:
@@ -78,17 +75,9 @@ services:
     depends_on:
       - jobmanager
     volumes:
-      - flink-config:/opt/flink/conf
       - local-data:/opt/flink/data  # New volume added
 
 volumes:
-  flink-config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /Users/teaugene/localFlink
-
   local-data:
     driver: local
     driver_opts:
